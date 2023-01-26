@@ -2,6 +2,13 @@
 '''pascals triangle'''
 
 def pascal_triangle(t):
+    """
+    Pascal's triangle
+    Args:
+        t (int): The number of rows of the triangle
+    Returns:
+        integers representing the Pascals triangle
+    """
     if t <= 0:
         return[]
     triangle = [[1]]
@@ -12,4 +19,3 @@ def pascal_triangle(t):
         row.append(1)
         triangle.append(row)
     return triangle
-    

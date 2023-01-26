@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''pascals triangle'''
 
+
 def pascal_triangle(t):
     """
     Pascals triangle
@@ -10,7 +11,7 @@ def pascal_triangle(t):
         integers representing the Pascals triangle
     """
     if t <= 0:
-        return[]
+        return []
     triangle = [[1]]
     for i in range(1, t):
         row = [1]

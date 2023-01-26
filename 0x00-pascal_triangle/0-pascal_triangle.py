@@ -3,7 +3,7 @@
 
 def pascal_triangle(t):
     """
-    Pascal's triangle
+    Pascals triangle
     Args:
         t (int): The number of rows of the triangle
     Returns:

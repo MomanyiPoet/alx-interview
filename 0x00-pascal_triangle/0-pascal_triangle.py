@@ -7,7 +7,7 @@ def pascal_triangle(t):
     Args:
         t (int): The number of rows of the triangle
     Returns:
-        integer representing the Pascals triangle
+        integers representing the Pascals triangle
     """
     if t <= 0:
         return[]

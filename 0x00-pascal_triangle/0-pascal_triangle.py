@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+'''pascals triangle'''
 
 def pascal_triangle(t):
     if t <= 0:
-        return []
+        return[]
     triangle = [[1]]
     for i in range(1, t):
         row = [1]
@@ -11,3 +12,4 @@ def pascal_triangle(t):
         row.append(1)
         triangle.append(row)
     return triangle
+    

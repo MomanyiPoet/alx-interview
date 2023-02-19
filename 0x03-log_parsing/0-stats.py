@@ -1,49 +1,39 @@
 #!/usr/bin/python3
+"""stats module
+"""
+from sys import stdin
 
-import sys
-import signal
 
-status_codes = [200, 301, 400, 401, 403, 404, 405, 500]
-counts = {status: 0 for status in status_codes}
-total_size = 0
-line_count = 0
+codes = {'200': 0, '301': 0, '400': 0, '401': 0,
+         '403': 0, '404': 0, '405': 0, '500': 0}
+size = 0
 
-def print_stats():
-    print("File size: {}".format(total_size))
-    for status, count in sorted(counts.items()):
-        if count > 0:
-            print("{}: {}".format(status, count))
 
-def reset_stats():
-    global counts, total_size, line_count
-    counts = {status: 0 for status in status_codes}
-    total_size = 0
-    line_count = 0
+def print_info():
+    """print_info method print needed info
+    Args:
+        codes (dict): code status
+        size (int): size of files
+    """
+    print("File size: {}".format(size))
+    for key, val in sorted(codes.items()):
+        if val > 0:
+            print("{}: {}".format(key, val))
 
-def signal_handler(sig, frame):
-    print_stats()
-    sys.exit(0)
 
-signal.signal(signal.SIGINT, signal_handler)
-
-for line in sys.stdin:
-    # Parse the line
+if __name__ == '__main__':
     try:
-        parts = line.split()
-        if len(parts) != 7:
-            continue
-        status = int(parts[5])
-        size = int(parts[6])
-        if status not in status_codes:
-            continue
-    except ValueError:
-        continue
-
-    # Update metrics
-    counts[status] += 1
-    total_size += size
-    line_count += 1
-
-    # Print stats
-    if line_count % 10 == 0:
-        print_stats()
+        for i, line in enumerate(stdin, 1):
+            try:
+                info = line.split()
+                size += int(info[-1])
+                if info[-2] in codes.keys():
+                    codes[info[-2]] += 1
+            except Exception:
+                pass
+            if not i % 10:
+                print_info()
+    except KeyboardInterrupt:
+        print_info()
+        raise
+    print_info()

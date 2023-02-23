@@ -1,5 +1,4 @@
 #!/usr/bin/pyhon3
-
 """
 Will validate UTF8 module
 """
@@ -7,6 +6,7 @@ def validUTF8(data):
     """validUTF8
     Determines if given data set represents a valid UTF-8 encoding.
     """
+    
     valid = 0
     for value in data:
         byte = value & 255
